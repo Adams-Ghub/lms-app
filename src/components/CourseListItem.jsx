@@ -7,10 +7,10 @@ const CourseListItem = ({ name, instructor, duration }) => {
       <View>
         <Text>{name}</Text>
       </View>
-      <Veiw>
+      <View>
         <Text>{instructor}</Text>
         <Text>{duration}</Text>
-      </Veiw>
+      </View>
     </View>
   );
 };
