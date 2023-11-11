@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity,StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CourseListItem  from '../components/CourseListItem';
 
@@ -95,7 +95,7 @@ const CourseList = () => {
         'Learn the basics of React Native development and build your first mobile app.',
       enrollmentStatus: 'Open', // Can be 'Open', 'Closed', or 'In Progress'
       thumbnail: 'your.image.here', //Link to the course thumbnail
-      duration: '8 weeks', // Duration of the course
+      duration: '6 weeks', // Duration of the course
       schedule: 'Tuesdays and Thursdays, 6:00 PM - 8:00 PM',
       location: 'Online',
       prerequisites: ['Basic JavaScript knowledge', 'Familiarity with React'],
@@ -172,8 +172,8 @@ const CourseList = () => {
   ];
 
   return (
-    <SafeAreaView>
-      <View>
+    <SafeAreaView style={styles.container} >
+      <View >
         {courseModel.map((course) => {
           return (
             <TouchableOpacity>
@@ -181,6 +181,7 @@ const CourseList = () => {
                 name={course.name}
                 instructor={course.instructor}
                 duration={course.duration}
+                location={course.location}
               />
             </TouchableOpacity>
           );
@@ -189,5 +190,13 @@ const CourseList = () => {
     </SafeAreaView>
   );
 };
+
+const styles=StyleSheet.create({
+    container:{
+        flex:1,       
+        width:'100%',
+        padding:15
+    }
+})
 
 export default CourseList;
