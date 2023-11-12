@@ -3155,6 +3155,11 @@ execa@^5.0.0:
     signal-exit "^3.0.3"
     strip-final-newline "^2.0.0"
 
+expandablecard@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/expandablecard/-/expandablecard-1.0.8.tgz#06ce085720f2b5ed0d6c622e70c96b2ae9a2595e"
+  integrity sha512-ROBqQsppmlkCimzKQtz2OOQEQw1lRLBNrzLmP98hf8njutrZzDixr1zuUm860lTF+ol6HUr7KX34lP7kaQBznA==
+
 expo-application@~5.3.0:
   version "5.3.0"
   resolved "https://registry.npmjs.org/expo-application/-/expo-application-5.3.0.tgz"
