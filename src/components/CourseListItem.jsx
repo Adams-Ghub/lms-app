@@ -19,7 +19,7 @@ const CourseListItem = ({ name, instructor, duration,location }) => {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 0,
-    backgroundColor: '#eee',
+    backgroundColor: '#ccc',
     width: '100%',
     marginBottom: 5,
     padding: 6,
@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
   },
   courseNameText:{
     fontSize:20,
-    fontWeight:'500'
+    fontWeight:'500',
+    marginBottom:3
   }
 });
 
