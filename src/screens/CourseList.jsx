@@ -1,7 +1,8 @@
 import React from "react";
-import { View, TouchableOpacity, StyleSheet } from "react-native";
+import { View, TouchableOpacity, StyleSheet,ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CourseListItem from "../components/CourseListItem";
+
 
 const CourseList = ({navigation}) => {
   const courseModel = [
@@ -173,7 +174,7 @@ const CourseList = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View>
+      <ScrollView>
         {courseModel.map((course) => {
           return (
             <TouchableOpacity
@@ -190,7 +191,7 @@ const CourseList = ({navigation}) => {
             </TouchableOpacity>
           );
         })}
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
