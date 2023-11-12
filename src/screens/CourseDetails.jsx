@@ -67,12 +67,12 @@ const CourseDetails = () => {
           <ExpandableCard
             title="View syllabus"
             expanded={false}
-            headerStyle={{ backgroundColor: "#ccc" }}
+            headerStyle={{ backgroundColor: "#ccc", paddingHorizontal:10 }}
           >
             <View style={styles.syllabusContainer}>
               {info.syllabus.map((item) => {
                 return (
-                  <View>
+                  <View style={styles.syllabusItemContainer}>
                     <Text>{"Week " + item.week}</Text>
                     <Text>{"Topic: " + item.topic}</Text>
                     <Text>{"Content: " + item.content}</Text>
@@ -111,6 +111,9 @@ const styles = StyleSheet.create({
   syllabusContainer: {
     height: "100%",
   },
+  syllabusItemContainer:{
+    marginBottom:10
+  }
 });
 
 export default CourseDetails;
