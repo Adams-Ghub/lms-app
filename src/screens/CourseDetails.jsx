@@ -1,60 +1,116 @@
-import React from 'react';
+import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
+import { useRoute } from "@react-navigation/native";
+import ExpandableCard from "expandablecard";
 
-const CourseDetails = ({ info }) => {
+const CourseDetails = () => {
+  const info = useRoute().params.data;
+
   return (
-    <SafeAreaView>
-      <View>
-        <View>
-          <Text>Course name</Text>
-          <Text>{info.name}</Text>
+    <SafeAreaView style={styles.container}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={styles.innerContainer}
+      >
+        <View style={styles.fieldContainer}>
+          <Text style={styles.title}>Course name</Text>
+          <Text style={styles.value}>{info.name}</Text>
         </View>
-        <View>
-          <Text>Instructor's name</Text>
-          <Text>{info.instructor}</Text>
+        <View style={styles.fieldContainer}>
+          <Text style={styles.title}>Instructor's name</Text>
+          <Text style={styles.value}>{info.instructor}</Text>
         </View>
-        <View>
-          <Text>Description</Text>
-          <Text>{info.description}</Text>
+        <View style={styles.fieldContainer}>
+          <Text style={styles.title}>Description</Text>
+          <Text style={styles.value}>{info.description}</Text>
         </View>
-        <View>
-          <Text>Enrollment status</Text>
-          <View>
-            <Text>{info.enrollmentStatus}</Text>{' '}
+        <View style={styles.fieldContainer}>
+          <Text style={styles.title}>Enrollment status</Text>
+          <View style={styles.enrollBtnValueContainer}>
+            <Text style={styles.value}>{info.enrollmentStatus}</Text>
             <TouchableOpacity>
-              {' '}
-              <Text>Enroll</Text>{' '}
-            </TouchableOpacity>{' '}
+              <Text style={styles.enrollButtonText}>Enroll</Text>
+            </TouchableOpacity>
           </View>
         </View>
         <View>
-          <View>
-            <Text>Course duration</Text>
-            <Text>{info.duration}</Text>
+          <View style={styles.fieldContainer}>
+            <Text style={styles.title}>Course duration</Text>
+            <Text style={styles.value}>{info.duration}</Text>
           </View>
-          <View>
-            <Text>Location</Text>
-            <Text>{info.location}</Text>
+          <View style={styles.fieldContainer}>
+            <Text style={styles.title}>Location</Text>
+            <Text style={styles.value}>{info.location}</Text>
           </View>
         </View>
-        <View>
-          <Text>Schedule</Text>
-          <Text>{info.schedule}</Text>
+        <View style={styles.fieldContainer}>
+          <Text style={styles.title}>Schedule</Text>
+          <Text style={styles.value}>{info.schedule}</Text>
         </View>
-        <View>
-          <Text>Pre-requisites</Text>
+        <View style={styles.fieldContainer}>
+          <Text style={styles.title}>Pre-requisites</Text>
           <View>
             {info.prerequisites.map((item) => {
-              return <Text>{item}</Text>;
+              return <Text style={styles.value}>{item}</Text>;
             })}
           </View>
         </View>
-        <View>
-          <Text>Syllabus</Text>
-          <Text>{info.syllabus}</Text>
+        <View style={styles.fieldContainer}>
+          <Text style={styles.title}>Syllabus</Text>
+          <ExpandableCard
+            title="View syllabus"
+            expanded={false}
+            headerStyle={{ backgroundColor: "#ccc" }}
+          >
+            <View style={styles.syllabusContainer}>
+              {info.syllabus.map((item) => {
+                return (
+                  <View>
+                    <Text>{"Week " + item.week}</Text>
+                    <Text>{"Topic: " + item.topic}</Text>
+                    <Text>{"Content: " + item.content}</Text>
+                  </View>
+                );
+              })}
+            </View>
+          </ExpandableCard>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 15,
+    marginBottom: 8,
+  },
+  fieldContainer: {
+    marginBottom: 15,
+  },
+  title: {
+    fontSize: 19,
+    fontWeight: "700",
+    borderStyle: "solid",
+    borderBottomWidth: 1,
+    borderBottomColor: "#bbb",
+  },
+  value: {
+    fontSize: 17,
+    color: "#777",
+    paddingLeft: 5,
+  },
+  syllabusContainer: {
+    height: "100%",
+  },
+});
 
 export default CourseDetails;
