@@ -6,19 +6,15 @@ import nodeImg from "../nodejs.jpg";
 import { useSelector } from "react-redux";
 
 const Dashboard = () => {
-  const { courses } = useSelector((state) => state.courses);
+  const { courses,user } = useSelector((state) => state.courses);
 
-  const [enrolled, setEnrolled] = useState(courses);
-
-  const filtered = enrolled.filter((item) => {
+  const filtered = courses.filter((item) => {
     for (let i = 0; i < item.students.length; i++) {
-      if (item.students[i].id === 107) {
+      if (item.students[i].email === user.email) {
         return item;
       }
     }
   });
-
-  console.log("filtered:", filtered);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -29,10 +25,10 @@ const Dashboard = () => {
           filtered.map((item) => {
             return (
               <DashboardItem
-                image={"../nodejs.jpg"}
+                image={item.thumbnail}
                 name={item.name}
                 instructor={item.instructor}
-                dueDate={"17-09-2023"}
+                dueDate={item.dueDate}
               />
             );
           })
