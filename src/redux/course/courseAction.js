@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getDocs, collection } from "firebase/firestore";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getDocs, collection} from "firebase/firestore";
 import {  db } from "../../firebase/firebase.js";
+
+
 
 
 export const GetCourses = createAsyncThunk(
@@ -22,3 +23,4 @@ export const GetCourses = createAsyncThunk(
     }
   }
 );
+
