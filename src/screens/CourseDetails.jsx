@@ -6,13 +6,34 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  Alert,
 } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import ExpandableCard from "expandablecard";
+import { useDispatch, useSelector } from "react-redux";
+import { clearEnrolled, enrollUser } from "../redux/course/courseSlice";
 
 const CourseDetails = () => {
   const info = useRoute().params.data;
+  const { user } = useSelector((state) => state.courses);
+  const dispatch = useDispatch();
 
+  const handleEnrollUser = (courseId) => {
+    data = { id: courseId, student: user };
+
+    dispatch(enrollUser(data));
+    Alert.alert("Message", "You have been successfully enrolled", [
+          {
+            text: "OK",
+            onPress: () => {
+              dispatch(clearEnrolled());
+            },
+          },
+        ])
+      
+  };
+
+  console.log("user:", user);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
@@ -35,9 +56,14 @@ const CourseDetails = () => {
           <Text style={styles.title}>Enrollment status</Text>
           <View style={styles.enrollBtnValueContainer}>
             <Text style={styles.value}>{info.enrollmentStatus}</Text>
-            <TouchableOpacity>
-              <Text style={styles.enrollButtonText}>Enroll</Text>
-            </TouchableOpacity>
+            {info.enrollmentStatus === "open" ? (
+              <TouchableOpacity
+                style={styles.enrollButton}
+                onPress={() => handleEnrollUser(info.id)}
+              >
+                <Text style={styles.enrollButtonText}>Enroll</Text>
+              </TouchableOpacity>
+            ) : null}
           </View>
         </View>
         <View>
@@ -67,7 +93,7 @@ const CourseDetails = () => {
           <ExpandableCard
             title="View syllabus"
             expanded={false}
-            headerStyle={{ backgroundColor: "#ccc", paddingHorizontal:10 }}
+            headerStyle={{ backgroundColor: "#ccc", paddingHorizontal: 10 }}
           >
             <View style={styles.syllabusContainer}>
               {info.syllabus.map((item) => {
@@ -111,9 +137,21 @@ const styles = StyleSheet.create({
   syllabusContainer: {
     height: "100%",
   },
-  syllabusItemContainer:{
-    marginBottom:10
-  }
+  syllabusItemContainer: {
+    marginBottom: 10,
+  },
+  enrollBtnValueContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginVertical: 5,
+  },
+  enrollButton: {
+    backgroundColor: "blue",
+    paddingHorizontal: 10,
+  },
+  enrollButtonText: {
+    color: "#fff",
+  },
 });
 
 export default CourseDetails;
