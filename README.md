@@ -38,7 +38,7 @@
 ### Key Features <a name="key-features"></a>
 
 - **Dashboard:** This is a page that displays all courses a user has enrolled in.
-- **Courselist:** This page shows a list of courses with some information about them.
+- **Courselist:** This page shows a list of courses with some detailed information about them.
 - **CourseDetails:** This page shows details about a course and a user can enroll on this page
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
